@@ -1,38 +1,46 @@
-# 💡 Customer Sentiment Analysis: Identifying Product Improvement Drivers
+# 📊 Customer Sentiment Analysis: Driving Product Improvement with NLP
 
-## 🎯 Business Goal
-To mitigate customer dissatisfaction and reduce product-related negative feedback by identifying the core issues driving negative sentiment in customer reviews.
+## 🎯 Project Goal
+To move beyond superficial star ratings and utilize advanced Natural Language Processing (NLP) techniques to identify the core product and operational factors driving negative customer sentiment within a large e-commerce review dataset.
 
-## 🛠️ Integrated Toolkit
-This project demonstrates a robust data pipeline integrating three core tools:
+The analysis is designed to provide actionable priorities for product development and logistics teams, focusing resources where dissatisfaction is highest.
 
-1.  **Python (Pandas, NLTK/VADER):** Data cleaning, text preprocessing, and sentiment scoring.
-2.  **SQLite (SQL):** Advanced Feature Engineering and data transformation.
-3.  **Looker Studio (BI):** Interactive dashboard creation and key metric visualization.
+## 🛠️ Integrated Toolkit & Advanced Skills
 
-## 📊 Methodology Highlights
+This project demonstrates a robust, end-to-end data pipeline, highlighting the integration of tools and advanced techniques:
 
-| Step | Action | Strategic Value |
+| Skill Focus | Tool Used | Technique Demonstrated |
 | :--- | :--- | :--- |
-| **1. Text Processing (Python)** | Applied the **VADER Sentiment Lexicon** (NLTK) to generate a numeric `Compound_Score` for each review text. | Demonstrated advanced text analysis capabilities. |
-| **2. Feature Engineering (SQL)** | Loaded the scored data into an SQLite table and used a `CASE WHEN` statement to create the definitive **`Sentiment_Category`** (Positive, Neutral, Negative). | Created a key business feature, proving SQL transformation skills. |
-| **3. Visualization (Looker Studio)** | Created a dynamic dashboard to segment the Negative Sentiment Rate by product category. | Translated complex text data into actionable business intelligence. |
+| **Big Data Handling** | **Python (Pandas)** | Implemented **Chunking** to overcome memory limitations (`ParserError`) and successfully process a **100,000-row** statistically significant sample. |
+| **Feature Engineering (NLP)** | **Python (NLTK/VADER)** | Calculated the precise `Compound Score` and engineered the critical `sentiment_category` feature. |
+| **Data Transformation** | **SQLite (SQL)** | Used **In-Memory SQL** to perform fast, complex `CASE WHEN` logic, creating categorical features (`sentiment_category`, `rating_category`). |
+| **Professional BI Design** | **Looker Studio & Canva** | Built a dynamic, high-impact dashboard with a custom layered design to improve readability and user experience. |
 
-## 🔑 Key Insights & Recommendations (Focus on Quantifiable Impact)
+## 🔑 Key Insights & Recommendations
 
-### Insight 1: Discrepancy in Feedback Type
-* **Finding:** 22% of reviews contained negative sentiment, often conflicting with the 4- and 5-star ratings.
-* **Recommendation:** Implement text analytics monitoring to flag reviews where sentiment and score diverge, catching subtle issues early.
+The analysis of the 100,000-review sample yielded three primary, quantifiable insights:
 
-### Insight 2: Logistics as a Pain Point
-* **Finding:** The "Beverages" category showed the highest Negative Sentiment Rate (35%), primarily driven by mentions of "Broken Package" and "Shipping Delay."
-* **Recommendation:** Prioritize a review of the supply chain and packaging for high-risk categories to reduce logistical detractions.
+### Insight 1: The Discrepancy is Real (Justifying NLP)
+* **Finding:** The average star rating stands at a high **4.15**, but the raw text analysis reveals a significant **7.99% Negative Sentiment Rate (Detractors)**.
+* **Recommendation:** Implement text-based monitoring for all 3-star reviews, as the average compound score for this group falls **below the 0.0 threshold**, proving text is a more accurate indicator of real dissatisfaction.
+
+### Insight 2: Actionable Prioritization
+* **Finding:** 5% of all negative sentiment is concentrated in the **Top 10 Product IDs**.
+* **Recommendation:** Prioritize the investigation of **Product B000KV61FC**, which accounts for the largest single volume of negative reviews. This allows for immediate, focused troubleshooting of quality control or logistics issues.
+
+### Insight 3: Neutral Sentiment is Passivity
+* **Finding:** ~8% of reviews were categorized as 'Neutral,' masking potential risk.
+* **Recommendation:** Initiate A/B testing on product messaging to encourage more polarized feedback, shifting 'Neutrals' into clearer 'Promoters' or 'Detractors.'
 
 ## 🔗 Project Resources
 
-* **Final Dashboard (Looker Studio):** [Insert Link to your Looker Studio Dashboard Here]
-* **Cleaned & Transformed Data (.csv):** `reviews_sentiment_TRANSFORMADO.csv`
-* **Python Scripts:** `01_Sentiment_Processing.ipynb` (Colab/Jupyter Notebook)
-* **SQL Queries:** `02_Feature_Engineering.sql` (File containing the SQL transformation code)
+| Resource | Description |
+| :--- | :--- |
+| **Final Interactive Dashboard (Looker Studio)** | The professional visualization of the analysis, demonstrating key findings and filtering capabilities. |
+| **Python Scripts (01_Sentiment_Processing.ipynb)** | Contains the robust Python code for `chunking`, error handling, and VADER scoring. |
+| **SQL Queries (02_Feature_Engineering.sql)** | The SQL logic used to create the final business categories (`sentiment_category`). |
+| **Cleaned Data File (.csv)** | The final, 100,000-row **BI-ready** CSV file used for visualization. |
 
 ---
+
+**[Dashboard Link](https://lookerstudio.google.com/s/uK0kjGICbuY)**
