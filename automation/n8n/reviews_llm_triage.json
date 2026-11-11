@@ -1,0 +1,19 @@
+{
+  "name": "Reviews - triage con LLM",
+  "nodes": [
+    {"parameters": {"rule": {"interval": [{"field": "days", "daysInterval": 1}]}}, "id": "s1", "name": "Diario", "type": "n8n-nodes-base.scheduleTrigger", "typeVersion": 1.2, "position": [-360, 0]},
+    {"parameters": {"url": "https://raw.githubusercontent.com/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers/main/top_negative_products.csv", "options": {}, "responseFormat": "text"}, "id": "s2", "name": "Top productos negativos", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [-140, 0]},
+    {"parameters": {"jsCode": "const txt = String($input.first().json.data ?? '');\nconst rows = txt.split(/\\r?\\n/).filter(Boolean);\nconst head = rows[0].split(',');\nconst data = rows.slice(1).map(l => {\n  const c = l.split(',');\n  const o = {};\n  head.forEach((h, i) => o[h] = c[i]);\n  return o;\n}).sort((a, b) => Number(b.n) - Number(a.n)).slice(0, 10);\nif (!data.length) { throw new Error('CSV vacio'); }\nreturn [{ json: { products: data } }];"}, "id": "s3", "name": "Parsear y ordenar", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [80, 0]},
+    {"parameters": {"method": "POST", "url": "https://api.openai.com/v1/chat/completions", "authentication": "predefinedCredentialType", "nodeCredentialType": "openAiApi", "sendBody": true, "specifyBody": "json", "jsonBody": "={{ JSON.stringify({ model: 'gpt-4o-mini', temperature: 0, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'Eres analista de producto. Recibes productos con su tasa de resenas negativas. Devuelve JSON: {\"acciones\":[{\"product_id\":\"\",\"hipotesis\":\"\",\"metrica_a_vigilar\":\"\"}]} con maximo 3 acciones, en espanol, sin inventar cifras.' }, { role: 'user', content: JSON.stringify($json.products) }] }) }}", "options": {}}, "id": "s4", "name": "Analizar con LLM", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [300, 0]},
+    {"parameters": {"jsCode": "const raw = $input.first().json.choices?.[0]?.message?.content;\nif (!raw) { throw new Error('Respuesta vacia del modelo'); }\nconst parsed = JSON.parse(raw);\nreturn [{ json: { acciones: parsed.acciones ?? [], generado: new Date().toISOString() } }];"}, "id": "s5", "name": "Validar JSON", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [520, 0]}
+  ],
+  "connections": {
+    "Diario": {"main": [[{"node": "Top productos negativos", "type": "main", "index": 0}]]},
+    "Top productos negativos": {"main": [[{"node": "Parsear y ordenar", "type": "main", "index": 0}]]},
+    "Parsear y ordenar": {"main": [[{"node": "Analizar con LLM", "type": "main", "index": 0}]]},
+    "Analizar con LLM": {"main": [[{"node": "Validar JSON", "type": "main", "index": 0}]]}
+  },
+  "settings": {"executionOrder": "v1"},
+  "active": false,
+  "pinData": {}
+}
