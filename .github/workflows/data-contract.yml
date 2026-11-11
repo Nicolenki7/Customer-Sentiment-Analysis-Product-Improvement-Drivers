@@ -1,0 +1,16 @@
+name: data-contract
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-datasets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate committed datasets
+        run: python tests/test_data_contract.py
