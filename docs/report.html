@@ -1,19 +1,83 @@
-<!doctype html>
-<html lang="es"><head><meta charset="utf-8">
+<!doctype html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Customer-Sentiment-Analysis-Product-Improvement-Drivers · Informe de datos</title><style>*{box-sizing:border-box}body{margin:0;background:#0b0f14;color:#e6edf3;font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}.wrap{max-width:900px;margin:0 auto;padding:46px 20px 70px}.eyebrow{margin:0 0 10px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#38e07b}h1{margin:0 0 8px;font-size:clamp(26px,5vw,38px);line-height:1.1;letter-spacing:-.02em}.sub{margin:0;color:#8b9bab;font-size:14px}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:26px 0}.kpi{background:#121820;border:1px solid #1f2a36;border-radius:14px;padding:16px}.kpi .v{font-size:24px;font-weight:700;color:#38e07b;font-variant-numeric:tabular-nums}.kpi .l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8b9bab;margin-top:4px}.card{background:#121820;border:1px solid #1f2a36;border-radius:16px;padding:22px;margin-bottom:18px}.card h2{margin:0 0 16px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#8b9bab}code{background:#1a2531;padding:1px 6px;border-radius:6px;font-size:12px}.banner{background:#2a1f12;border:1px solid #5a3f1c;border-radius:12px;padding:14px 18px;margin:20px 0;font-size:13px;color:#f0c48a}.banner ul{margin:8px 0 0;padding-left:18px}footer{margin-top:38px;padding-top:18px;border-top:1px solid #1f2a36;font-size:12px;color:#68798a}</style></head>
-<body><main class="wrap">
-<p class="eyebrow">Informe generado desde el dataset del repositorio</p>
-<h1>Customer-Sentiment-Analysis-Product-Improvement-Drivers</h1>
-
-<p class="sub">Fuente: <code>reviews_sentiment_TRANSFORMADO_ROBUSTO_100k.csv</code> · separador <code>&#x27;,&#x27;</code> · agregación <code>mean</code></p>
-<div class="kpis">
-<div class="kpi"><div class="v">100,000</div><div class="l">filas</div></div>
-<div class="kpi"><div class="v">6</div><div class="l">columnas</div></div>
-<div class="kpi"><div class="v">100.0%</div><div class="l">celdas con dato</div></div>
-<div class="kpi"><div class="v">3</div><div class="l">columnas numéricas</div></div>
-</div>
-<section class="card"><h2>Distribución de registros por sentiment_category</h2><svg viewBox="0 0 820 94" width="100%"><rect x="250" y="8" width="480.0" height="16" rx="4" fill="#38e07b" opacity=".85"/><text x="240" y="20" text-anchor="end" font-size="12" fill="#a9b8c7">Positive</text><text x="738.0" y="20" font-size="12" fill="#e6edf3">89,858</text><rect x="250" y="34" width="42.7" height="16" rx="4" fill="#38e07b" opacity=".85"/><text x="240" y="46" text-anchor="end" font-size="12" fill="#a9b8c7">Negative</text><text x="300.7" y="46" font-size="12" fill="#e6edf3">7,987</text><rect x="250" y="60" width="11.5" height="16" rx="4" fill="#38e07b" opacity=".85"/><text x="240" y="72" text-anchor="end" font-size="12" fill="#a9b8c7">Neutral</text><text x="269.5" y="72" font-size="12" fill="#e6edf3">2,155</text></svg></section><section class="card"><h2>Promedio de compound_score por sentiment_category</h2><svg viewBox="0 0 820 94" width="100%"><rect x="250" y="8" width="480.0" height="16" rx="4" fill="#4cc2ff" opacity=".85"/><text x="240" y="20" text-anchor="end" font-size="12" fill="#a9b8c7">Positive</text><text x="738.0" y="20" font-size="12" fill="#e6edf3">0.8</text><rect x="250" y="34" width="2.0" height="16" rx="4" fill="#4cc2ff" opacity=".85"/><text x="240" y="46" text-anchor="end" font-size="12" fill="#a9b8c7">Neutral</text><text x="260.0" y="46" font-size="12" fill="#e6edf3">0</text><rect x="250" y="60" width="280.9" height="16" rx="4" fill="#4cc2ff" opacity=".85"/><text x="240" y="72" text-anchor="end" font-size="12" fill="#a9b8c7">Negative</text><text x="538.9" y="72" font-size="12" fill="#e6edf3">-0.47</text></svg></section>
-<footer>Cada cifra se calcula del CSV versionado en este repositorio; no hay datos simulados.<br>
-Informe de analisis generado para revision; el dataset fuente es el versionado en el repositorio.</footer>
-</main></body></html>
+<title>Reseñas: dónde duele el producto</title><style>:root{--t:#1f2328;--g:#57606a;--l:#d0d7de;--a:#0f62fe;--r:#da1e28;--f:#f6f8fa}
+*{box-sizing:border-box}
+body{margin:0;color:var(--t);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:40px 24px 64px}
+header{border-bottom:1px solid var(--l);padding-bottom:24px}
+.eb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--a);font-weight:700}
+h1{font-size:30px;line-height:1.25;margin:10px 0 12px;letter-spacing:-.02em}
+h2{font-size:19px;margin:0 0 4px}
+.pq{color:var(--g);font-size:16px;max-width:70ch;margin:0}
+.k{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:28px 0 8px}
+.k div{background:var(--f);border:1px solid var(--l);border-radius:10px;padding:14px 16px}
+.k b{display:block;font-size:24px;letter-spacing:-.02em}
+.k span{font-size:12px;color:var(--g);text-transform:uppercase;letter-spacing:.06em}
+.k em{display:block;font-size:12px;color:var(--g);font-style:normal}
+.fl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:28px 0 4px}
+.fl i{font-size:12px;color:var(--g);text-transform:uppercase;letter-spacing:.06em;font-style:normal;margin-right:4px}
+button{font:inherit;font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--l);background:#fff;color:var(--g);cursor:pointer;transition:.15s}
+button:hover{border-color:var(--a);color:var(--a)}
+button[aria-pressed=true]{background:var(--a);border-color:var(--a);color:#fff}
+section{margin:36px 0}
+.s{color:var(--g);font-size:13px;margin:0 0 18px}
+.b{display:grid;gap:9px}
+.f{display:grid;grid-template-columns:132px 1fr 92px;gap:12px;align-items:center}
+.f u{font-size:13px;color:var(--g);text-align:right;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p{background:var(--f);border-radius:4px;height:22px;overflow:hidden}
+.p div{height:100%;background:var(--a);border-radius:4px;transition:width .35s}
+.p .neg{background:var(--r)}
+.f s{font-size:13px;font-variant-numeric:tabular-nums;font-weight:600;text-align:right;text-decoration:none}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--l)}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--g)}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+ul,ol{color:var(--g);font-size:13.5px;padding-left:20px}
+li{margin:6px 0}
+footer{border-top:1px solid var(--l);margin-top:44px;padding-top:16px;font-size:12px;color:var(--g)}
+code{background:var(--f);padding:2px 5px;border-radius:4px;font-size:12.5px}</style></head><body><div class="w">
+<header><p class="eb">Voz del cliente · reseñas Amazon</p><h1>Reseñas: dónde duele el producto</h1><p class="pq">Cien mil reseñas con su polaridad calculada. La pregunta no es qué porcentaje es negativo, sino qué productos concentran el enfado y si las estrellas dicen lo mismo que el texto: cuando no coinciden, la nota media está escondiendo el problema.</p></header>
+<div class="k"><div><span>Reseñas</span><b>100.000</b><em>con polaridad calculada</em></div><div><span>Productos</span><b>12.560</b><em>identificadores distintos</em></div><div><span>Negativas</span><b>8,0 %</b><em>texto negativo</em></div><div><span>Compound medio</span><b>0,682</b><em>escala -1 a 1</em></div></div><section><h2>Reparto del sentimiento</h2><p class='s'>% de reseñas en cada categoría del modelo</p><div class='b' id='g-s'></div></section>
+<section><h2>Polaridad media por calificación</h2><p class='s'>compound de VADER; -1 es lo más negativo</p><div class='b' id='g-c'></div></section>
+<section><h2>Volumen por calificación</h2><p class='s'>cuántas reseñas hay detrás de cada barra anterior</p><div class='b' id='g-v'></div></section>
+<section><h2>Productos con más reseñas negativas</h2><p class='s'>% de sus reseñas que son negativas</p><div class='b' id='g-p'></div></section>
+<section><h2>Los productos más castigados</h2><p class='s'>ordenados por tasa de reseñas negativas</p><table><thead><tr><th>Producto</th><th>Reseñas</th><th>Negativas</th><th>Nota media</th></tr></thead><tbody><tr><td>B00002N8SM</td><td class='n'>38</td><td class='n'>65,8 %</td><td class='n'>1,79</td></tr><tr><td>B001BIXK7K</td><td class='n'>31</td><td class='n'>35,5 %</td><td class='n'>4,74</td></tr><tr><td>B008C2JCUW</td><td class='n'>35</td><td class='n'>34,3 %</td><td class='n'>3,51</td></tr><tr><td>B005UP1M4I</td><td class='n'>42</td><td class='n'>33,3 %</td><td class='n'>2,50</td></tr><tr><td>B001EPQVFS</td><td class='n'>39</td><td class='n'>30,8 %</td><td class='n'>3,31</td></tr><tr><td>B004342XH2</td><td class='n'>48</td><td class='n'>27,1 %</td><td class='n'>2,67</td></tr><tr><td>B001E53UTS</td><td class='n'>30</td><td class='n'>26,7 %</td><td class='n'>3,63</td></tr><tr><td>B001EQ4RWQ</td><td class='n'>45</td><td class='n'>24,4 %</td><td class='n'>2,78</td></tr><tr><td>B00284TR82</td><td class='n'>62</td><td class='n'>24,2 %</td><td class='n'>3,85</td></tr><tr><td>B0000CEPDP</td><td class='n'>46</td><td class='n'>23,9 %</td><td class='n'>4,15</td></tr></tbody></table></section>
+<section><h2>Cómo se calcula</h2><p class="s">Una fila por reseña; el ranking de productos sale de un archivo aparte del proyecto.</p><ol><li>Cada fila es una reseña; la polaridad ya viene calculada en el CSV (compound de VADER).</li><li>La tasa negativa de un producto es reseñas negativas / reseñas de ese producto, no / total.</li><li>Los productos de la tabla son los que aparecen en outputs/top_negative_products.csv del proyecto.</li><li>No se recalculan sentimientos: se agrega la columna que produjo el pipeline de NLP.</li></ol></section>
+<section><h2>Qué no dice este informe</h2><p class="s">Los cortes que este dataset no sostiene.</p><ul><li>El ranking solo mira productos con volumen suficiente en la muestra; el resto no aparece.</li><li>Una tasa negativa alta con pocas reseñas es ruido, no una señal.</li><li>VADER falla con ironía y sarcasmo, que en reseñas es habitual.</li><li>No hay fechas por reseña, así que no se puede ver si el problema es actual o viejo.</li></ul></section>
+<footer>Generado por <code>src/report.py</code> a partir de <code>reviews_sentiment_TRANSFORMADO_ROBUSTO_100k.csv y outputs/top_negative_products.csv</code>. Sin dependencias,
+sin CDN: cada cifra de esta página sale de los datos del repositorio.</footer>
+</div><script>const DATOS={"filas":[
+{"a":"todos","g":"sentimiento","k":"Negative","v":8.0,"u":"%"},
+{"a":"todos","g":"sentimiento","k":"Neutral","v":2.2,"u":"%"},
+{"a":"todos","g":"sentimiento","k":"Positive","v":89.9,"u":"%"},
+{"a":"todos","g":"estrellas","k":"1 estrellas","v":0.184,"u":""},
+{"a":"todos","g":"volumen","k":"1 estrellas","v":9318,"u":""},
+{"a":"todos","g":"estrellas","k":"2 estrellas","v":0.428,"u":""},
+{"a":"todos","g":"volumen","k":"2 estrellas","v":5568,"u":""},
+{"a":"todos","g":"estrellas","k":"3 estrellas","v":0.59,"u":""},
+{"a":"todos","g":"volumen","k":"3 estrellas","v":8059,"u":""},
+{"a":"todos","g":"estrellas","k":"4 estrellas","v":0.742,"u":""},
+{"a":"todos","g":"volumen","k":"4 estrellas","v":14643,"u":""},
+{"a":"todos","g":"estrellas","k":"5 estrellas","v":0.777,"u":""},
+{"a":"todos","g":"volumen","k":"5 estrellas","v":62412,"u":""},
+{"a":"todos","g":"productos","k":"B00002N8SM","v":65.8,"u":"%"},
+{"a":"todos","g":"productos","k":"B001BIXK7K","v":35.5,"u":"%"},
+{"a":"todos","g":"productos","k":"B008C2JCUW","v":34.3,"u":"%"},
+{"a":"todos","g":"productos","k":"B005UP1M4I","v":33.3,"u":"%"},
+{"a":"todos","g":"productos","k":"B001EPQVFS","v":30.8,"u":"%"},
+{"a":"todos","g":"productos","k":"B004342XH2","v":27.1,"u":"%"},
+{"a":"todos","g":"productos","k":"B001E53UTS","v":26.7,"u":"%"},
+{"a":"todos","g":"productos","k":"B001EQ4RWQ","v":24.4,"u":"%"}
+],"graficos":[{"id":"s","grupo":"sentimiento","titulo":"Reparto del sentimiento","subtitulo":"% de reseñas en cada categoría del modelo","unidad":"%"},{"id":"c","grupo":"estrellas","titulo":"Polaridad media por calificación","subtitulo":"compound de VADER; -1 es lo más negativo","unidad":""},{"id":"v","grupo":"volumen","titulo":"Volumen por calificación","subtitulo":"cuántas reseñas hay detrás de cada barra anterior","unidad":""},{"id":"p","grupo":"productos","titulo":"Productos con más reseñas negativas","subtitulo":"% de sus reseñas que son negativas","unidad":"%"}]};const D=DATOS;let act='todos';
+const num=(v,u)=>{const n=Math.abs(v).toLocaleString('es-ES',{maximumFractionDigits:u==='%'?1:0});return (v<0?'-':'')+n+(u==='%'?' %':'')};
+function pinta(){D.graficos.forEach(g=>{const c=document.getElementById('g-'+g.id);
+const fs=D.filas.filter(f=>f.g===g.grupo&&(act==='todos'||f.a===act));
+if(!fs.length){c.innerHTML='<p class="s">Sin datos para este filtro.</p>';return}
+const o={};fs.forEach(f=>{o[f.k]=(o[f.k]||0)+f.v});
+const ks=(g.orden||Object.keys(o)).filter(k=>k in o),vs=ks.map(k=>o[k]);
+const max=Math.max(...vs.map(Math.abs),1),u=g.unidad||fs[0].u||'';
+c.innerHTML=ks.map((k,i)=>{const v=vs[i];
+return '<div class="f"><u>'+k+'</u><div class="p"><div class="'+(v<0?'neg':'')+'" style="width:'+Math.max(Math.abs(v)/max*100,.6)+'%"></div></div><s>'+num(v,u)+'</s></div>'}).join('')})}
+document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{act=b.dataset.v;
+document.querySelectorAll('button').forEach(o=>o.setAttribute('aria-pressed',o===b));pinta()}));
+pinta();</script></body></html>
