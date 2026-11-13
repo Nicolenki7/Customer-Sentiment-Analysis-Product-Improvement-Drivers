@@ -8,6 +8,12 @@
 
 ---
 
+## 📊 Interactive report
+
+**[Open the interactive report →](https://nicolenki7.github.io/Customer-Sentiment-Analysis-Product-Improvement-Drivers/report.html)** — filters, charts and the table behind them, rebuilt from the committed CSVs.
+
+---
+
 ## The business question
 
 A catalogue with **100,000 reviews** cannot be read by hand, but it can be prioritised. The question is not *what customers think* but **which products to fix first — and which signal to believe**. Star ratings and text sentiment disagree far more often than anyone assumes, and picking the wrong one sends the ops team to the wrong SKU.
