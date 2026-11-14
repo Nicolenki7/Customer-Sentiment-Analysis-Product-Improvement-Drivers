@@ -26,15 +26,7 @@ jobs:
           from nbformat.v4 import new_markdown_cell
 
           RUTA = 'Sentiment_Analysis_and_Satisfaction_Drivers_in_E_commerce_Reviews.ipynb'
-          TEXTO = '''[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers/blob/main/Sentiment_Analysis_and_Satisfaction_Drivers_in_E_commerce_Reviews.ipynb)
-
-> **En 30 segundos:** de 100.000 reseñas, el 8 % son negativas y esa negatividad no se reparte al azar: unos pocos productos la concentran.
->
-> - 100.000 reseñas sobre 12.560 productos
-> - 7,99 % de sentimiento negativo (7.987) frente a 9.318 reseñas de 1 estrella
-> - Peor producto con volumen: 65,8 % de negativas sobre 38 reseñas
->
-> Los resultados ya están ejecutados: no hace falta correr nada para leerlos.'''
+          TEXTO = '[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Nicolenki7/Customer-Sentiment-Analysis-Product-Improvement-Drivers/blob/main/Sentiment_Analysis_and_Satisfaction_Drivers_in_E_commerce_Reviews.ipynb)\n\n> **En 30 segundos:** de 100.000 reseñas, el 8 % son negativas y esa negatividad no se reparte al azar: unos pocos productos la concentran.\n>\n> - 100.000 reseñas sobre 12.560 productos\n> - 7,99 % de sentimiento negativo (7.987) frente a 9.318 reseñas de 1 estrella\n> - Peor producto con volumen: 65,8 % de negativas sobre 38 reseñas\n>\n> Los resultados ya están ejecutados: no hace falta correr nada para leerlos.'
 
           nb = nbformat.read(RUTA, as_version=4)
           primero = ''.join(nb.cells[0].source) if nb.cells else ''
