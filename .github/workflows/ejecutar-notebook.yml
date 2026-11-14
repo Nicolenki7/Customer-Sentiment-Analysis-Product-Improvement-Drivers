@@ -41,26 +41,6 @@ jobs:
           else:
               print('cabecera ya presente')
           PY
-      - name: Ajuste de auditoria
-        run: |
-          python - <<'PY'
-          import nbformat
-
-          RUTA = 'Sentiment_Analysis_and_Satisfaction_Drivers_in_E_commerce_Reviews.ipynb'
-          nb = nbformat.read(RUTA, as_version=4)
-          junto = ''.join(''.join(c.source) for c in nb.cells)
-          if 'productos unicos' in junto:
-              print('ajuste ya presente')
-          else:
-              for c in nb.cells:
-                  if c.cell_type == 'code' and 'productos unicos' not in c.source and "print('filas:', len(df)" in c.source:
-                      c.source = c.source.replace(
-                          "print('filas:', len(df), '| columnas:', list(df.columns))",
-                          "print('filas:', len(df), '| columnas:', list(df.columns))\nprint('productos unicos:', df['product_id'].nunique())")
-                      nbformat.write(nb, RUTA)
-                      print('print de productos agregado')
-                      break
-          PY
       - name: Ejecutar
         run: jupyter nbconvert --to notebook --execute --inplace "Sentiment_Analysis_and_Satisfaction_Drivers_in_E_commerce_Reviews.ipynb" --ExecutePreprocessor.timeout=900
       - name: Commit
